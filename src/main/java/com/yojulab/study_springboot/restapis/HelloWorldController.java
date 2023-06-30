@@ -3,13 +3,19 @@ package com.yojulab.study_springboot.restapis;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.yojulab.study_springboot.service.HelloWorldService;
+
 @Controller
 public class HelloWorldController {
+    @Autowired
+    HelloWorldService helloWorldService;
+
     @GetMapping("/helloWorld")
     public int helloWorld(){
         return 0;
@@ -58,4 +64,14 @@ public class HelloWorldController {
 
         return ResponseEntity.ok().body(arrayList);
     }
+
+    // /helloWorldResponseWithService/1/10/1
+    @GetMapping("/helloWorldResponseWithService/{currentPage}/{perPage}/{SN}")
+    public ResponseEntity<Object> helloWorldResponseWithService(@PathVariable String currentPage
+                    , @PathVariable String perPage, @PathVariable String SN){
+        ArrayList arrayList = new ArrayList<>();
+        arrayList = helloWorldService.fakeSelect(currentPage, perPage);
+        return ResponseEntity.ok().body(arrayList);
+    }
+
 }
