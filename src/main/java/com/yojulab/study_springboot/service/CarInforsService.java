@@ -5,13 +5,27 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yojulab.study_springboot.dao.SharedDao;
 
 @Service
+@Transactional
 public class CarInforsService {
     @Autowired
     SharedDao sharedDao;
+
+    // 검색(조건-search : YEAR, CAR_NAME)
+    public Object selectSearch(String search, String words) {
+        // Object getOne(String sqlMapId, Object dataMap)
+        String sqlMapId = "CarInfors.selectSearch";
+        HashMap dataMap = new HashMap<>();
+        dataMap.put("search", search);
+        dataMap.put("words", words);
+
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
 
     public Object selectAll(String CAR_INFOR_ID) {
         // Object getOne(String sqlMapId, Object dataMap)
@@ -53,4 +67,15 @@ public class CarInforsService {
         Object result = sharedDao.delete(sqlMapId, dataMap);
         return result;
     }
+
+    // 2PC
+    public Object insertDouble(Map dataMap) {
+        String sqlMapId = "CarInfors.insert";
+        // sucess
+        Object result = sharedDao.insert(sqlMapId, dataMap);
+        // error
+        result = sharedDao.insert(sqlMapId, dataMap);
+        return result;
+    }
+
 }
