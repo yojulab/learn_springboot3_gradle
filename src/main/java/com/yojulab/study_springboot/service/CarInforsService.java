@@ -25,7 +25,7 @@ public class CarInforsService {
 
     public Object insert(Map dataMap){
         String sqlMapId = "CarInfors.insert";
-        sharedDao.insert(sqlMapId, dataMap);
-        return null;
+        Object result = sharedDao.insert(sqlMapId, dataMap);
+        return result;
     }
 }
