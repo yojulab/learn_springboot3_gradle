@@ -13,6 +13,16 @@ public class CarInforsService {
     @Autowired
     SharedDao sharedDao;
 
+    public Object selectAll(String CAR_INFOR_ID) {
+        // Object getOne(String sqlMapId, Object dataMap)
+        String sqlMapId = "CarInfors.selectAll";
+        HashMap dataMap = new HashMap<>();
+        dataMap.put("CAR_INFOR_ID", CAR_INFOR_ID);
+
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object selectDetail(String CAR_INFOR_ID) {
         // Object getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectByUID";
@@ -23,9 +33,24 @@ public class CarInforsService {
         return result;
     }
 
-    public Object insert(Map dataMap){
+    public Object insert(Map dataMap) {
         String sqlMapId = "CarInfors.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object update(Map dataMap) {
+        String sqlMapId = "CarInfors.update";
+        Object result = sharedDao.update(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object delete(String CAR_INFOR_ID) {
+        String sqlMapId = "CarInfors.delete";
+        HashMap dataMap = new HashMap<>();
+        dataMap.put("CAR_INFOR_ID", CAR_INFOR_ID);
+
+        Object result = sharedDao.delete(sqlMapId, dataMap);
         return result;
     }
 }
