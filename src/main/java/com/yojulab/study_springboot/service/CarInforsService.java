@@ -24,6 +24,15 @@ public class CarInforsService {
     }
 
     // 검색(조건-search : YEAR, CAR_NAME)
+    public Object selectSearch(Map dataMap) {
+        // Object getOne(String sqlMapId, Object dataMap)
+        String sqlMapId = "CarInfors.selectSearch";
+
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 검색(조건-search : YEAR, CAR_NAME)
     public Object selectSearch(String search, String words) {
         // Object getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectSearch";
