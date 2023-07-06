@@ -10,6 +10,7 @@ public class MainController {
 
         String viewName = "/WEB-INF/views/main.jsp";
         modelAndView.setViewName(viewName);
+        modelAndView.addObject("viewName", "home Attr");
         return modelAndView;
     }
     
