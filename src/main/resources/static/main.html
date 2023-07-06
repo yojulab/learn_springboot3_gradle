@@ -35,15 +35,12 @@
     </nav>
 
     <!-- Main Content -->
-    <%
-        String name = (String)request.getAttribute("name");
-    %>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-8">
                 <h2>Search</h2>
                 <div class="input-group mb-3">
-                    <input type="text" value="<%= name %>" class="form-control" placeholder="Search..." id="keydownEnter">
+                    <input type="text" class="form-control" placeholder="Search..." id="keydownEnter">
                     <button class="btn btn-primary" type="button" onclick="carTableBody()">Go</button>
                 </div>
             </div>
