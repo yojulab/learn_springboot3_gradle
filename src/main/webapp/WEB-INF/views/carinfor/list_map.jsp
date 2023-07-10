@@ -1,4 +1,5 @@
 <%@ page import="java.util.HashMap, java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,83 +36,86 @@
         </div>
     </nav>
 
-    <%
-        HashMap params = (HashMap)request.getAttribute("params");
-        String searchStr = (String)params.getOrDefault("search", "");
-        HashMap result = (HashMap)request.getAttribute("result");
-    %>
-    <!-- Main Content -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-8">
-                <h2>Search</h2>
-                <div class="input-group mb-3">
-                    <form action="/carInfor/selectSearch" method="get">
-                        <select class="form-select" name="search">
-                            <option >Select an option...</option>
-                            <option value="YEAR" <%= (searchStr.equals("YEAR")) ? "selected" : "" %>>YEAR</option>
-                            <option value="CAR_NAME" <%= (searchStr.equals("CAR_NAME")) ? "selected" : "" %>>CAR_NAME</option>
-                        </select>
-                        <input type="text" name="words" value='<%= params.getOrDefault("words", "") %>' class="form-control" placeholder="Search..." id="keydownEnter">
-                        <button class="btn btn-primary" type="submit" >Go</button>
-                    </form>
+    <% HashMap params=(HashMap)request.getAttribute("params"); String searchStr=(String)params.getOrDefault("search", ""
+        ); HashMap result=(HashMap)request.getAttribute("result"); %>
+        <!-- Main Content -->
+        <form action="" method="">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Search</h2>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="search">
+                                <option>Select an option...</option>
+                                <option value="YEAR" <%=(searchStr.equals("YEAR")) ? "selected" : "" %>>YEAR
+                                </option>
+                                <option value="CAR_NAME" <%=(searchStr.equals("CAR_NAME")) ? "selected" : "" %>
+                                    >CAR_NAME</option>
+                            </select>
+                            <input type="text" name="words" value='<%= params.getOrDefault("words", "") %>'
+                                class="form-control" placeholder="Search..." id="keydownEnter">
+                            <button class="btn btn-primary" type="submit" formaction="/carInfor/map/selectSearch"
+                                formmethod="get">Go</button>
+                        </div>
+                        <h2>Table</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Car Name</th>
+                                    <th>ID</th>
+                                    <th>Manufacturer ID</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="carTableBody">
+                                <% ArrayList resultList=(ArrayList)result.get("resultList"); 
+                                    for(int i=0; i < resultList.size(); i=i+1){
+                                        HashMap record=(HashMap)resultList.get(i); %>
+                                    <tr>
+                                        <td>
+                                            <%= record.get("CAR_NAME") %>
+                                        </td>
+                                        <td>
+                                            <%= record.get("YEAR") %>
+                                        </td>
+                                        <td>
+                                            <%= record.get("CAR_INFOR_ID") %>
+                                        </td>
+                                        <td>
+                                            <%= record.get("COMPANY_ID") %>
+                                        </td>
+                                        <td>
+                                            <button formaction='/carInfor/map/deleteAndSelectSearch/<%= record.get("CAR_INFOR_ID") %>' formmethod="post">Del</button>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                        <!-- Empty -->
+                            </tbody>
+                        </table>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                <h2>Table</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Year</th>
-                            <th>Car Name</th>
-                            <th>ID</th>
-                            <th>Manufacturer ID</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody id="carTableBody">
-                        <% 
-                            ArrayList resultList = (ArrayList)result.get("resultList");
-                            for(int i=0; i < resultList.size(); i=i+1){
-                                HashMap record = (HashMap)resultList.get(i);
-                        %>
-                        <form >
-                            <input type="hidden" name="CAR_INFOR_ID" value='<%= record.get("CAR_INFOR_ID") %>' id="">
-                        <tr>
-                            <td><%= record.get("CAR_NAME") %></td>
-                            <td><%= record.get("YEAR") %></td>
-                            <td><%= record.get("CAR_INFOR_ID") %></td>
-                            <td><%= record.get("COMPANY_ID") %></td>
-                            <td>
-                                <button formaction="/carInfor/deleteAndSelectSearch" formmethod="post">Del</button>
-                            </td>
-                        </tr>
-                        </form>
-                        <%
-                            }
-                        %>
-                        <!-- Empty -->
-                    </tbody>
-                </table>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
             </div>
-        </div>
-    </div>
+        </form>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-4">
-        <div class="container">
-            <p>&copy; 2023 Your Website. All Rights Reserved.</p>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-4 mt-4">
+            <div class="container">
+                <p>&copy; 2023 Your Website. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

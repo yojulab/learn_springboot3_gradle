@@ -1,6 +1,7 @@
 package com.yojulab.study_springboot.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,21 @@ public class CarInforsService {
     }
 
     // 검색(조건-search : YEAR, CAR_NAME)
-    public Object selectSearch(Map dataMap) {
+    // public List selectSearch(Map dataMap) {
+    //     // Object getOne(String sqlMapId, Object dataMap)
+    //     String sqlMapId = "CarInfors.selectSearch";
+
+    //     Object result = sharedDao.getList(sqlMapId, dataMap);
+    //     return (List) result;
+    // }
+    
+    // 검색(조건-search : YEAR, CAR_NAME)
+    public Map selectSearch(Map dataMap) {
         // Object getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectSearch";
-
-        Object result = sharedDao.getList(sqlMapId, dataMap);
+        
+        HashMap result = new HashMap<>();
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
     }
 
@@ -64,6 +75,15 @@ public class CarInforsService {
         return result;
     }
 
+    public Object selectDetail(String CAR_INFOR_ID, Map dataMap) {
+        // Object getOne(String sqlMapId, Object dataMap)
+        String sqlMapId = "CarInfors.selectByUID";
+        dataMap.put("CAR_INFOR_ID", CAR_INFOR_ID);
+
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object insert(Map dataMap) {
         String sqlMapId = "CarInfors.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
@@ -86,15 +106,13 @@ public class CarInforsService {
     }
 
     // MVC view
-    public Object deleteAndSelectSearch(Map dataMap) {
+    public Object deleteAndSelectSearch(String UNIQUE_ID, Map dataMap) {
+        dataMap.put("CAR_INFOR_ID", UNIQUE_ID);
+
         HashMap result = new HashMap<>();
-        // String sqlMapId = "CarInfors.delete";
-        // result.put("deleteCount", sharedDao.delete(sqlMapId, dataMap));
         result.put("deleteCount", this.delete(dataMap));
 
-        // sqlMapId = "CarInfors.selectSearch";
-        // result.put("resultList", sharedDao.getOne(sqlMapId, dataMap));
-        result.put("resultList", this.selectSearch(dataMap));
+        result.putAll(this.selectSearch(dataMap));
         return result;
     }
 
