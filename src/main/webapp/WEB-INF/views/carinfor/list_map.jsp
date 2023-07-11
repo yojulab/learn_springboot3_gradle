@@ -11,30 +11,8 @@
 </head>
 
 <body>
-
     <!-- Menu -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <%@ include file="/WEB-INF/views/commons/header.jsp" %>
 
     <% HashMap params=(HashMap)request.getAttribute("params"); String searchStr=(String)params.getOrDefault("search", ""
         ); HashMap result=(HashMap)request.getAttribute("result"); %>
@@ -109,11 +87,7 @@
 
 
         <!-- Footer -->
-        <footer class="bg-dark text-white text-center py-4 mt-4">
-            <div class="container">
-                <p>&copy; 2023 Your Website. All Rights Reserved.</p>
-            </div>
-        </footer>
+        <%@ include file="/WEB-INF/views/commons/footer.jsp" %>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
