@@ -116,6 +116,16 @@ public class CarInforsService {
         return result;
     }
 
+    // MVC view
+    public Object deleteAndSelectSearch(Map dataMap) {
+
+        HashMap result = new HashMap<>();
+        result.put("deleteCount", this.delete(dataMap));
+
+        result.putAll(this.selectSearch(dataMap));
+        return result;
+    }
+
     // rest api
     public Object delete(String CAR_INFOR_ID) {
         String sqlMapId = "CarInfors.delete";
