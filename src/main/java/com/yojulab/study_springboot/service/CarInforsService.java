@@ -44,6 +44,22 @@ public class CarInforsService {
     }
 
     // 검색(조건-search : YEAR, CAR_NAME)
+    public Map selectSearchWithPagination(Map dataMap) {
+        String sqlMapId = "CarInfors.selectSearchWithPagination";
+        
+        HashMap result = new HashMap<>();
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
+        return result;
+    }
+
+    public Object selectTotal(Map dataMap) {
+        String sqlMapId = "CarInfors.selectTotal";
+
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }    
+
+    // 검색(조건-search : YEAR, CAR_NAME)
     public Object selectSearch(String search, String words) {
         // Object getOne(String sqlMapId, Object dataMap)
         String sqlMapId = "CarInfors.selectSearch";

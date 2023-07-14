@@ -19,6 +19,32 @@
         ;
 	</select>
 
+    <!-- 검색 with pagination -->
+	<select id="selectSearchWithPagination" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM db_cars.car_infors
+        where 1 = 1 
+        <choose>
+            <when test="search == 'YEAR'">
+            <![CDATA[
+            and YEAR > #{words}
+            ]]>
+            </when>
+            <when test="search == 'CAR_NAME'">
+            and CAR_NAME like CONCAT(#{words}, '%')
+            </when>
+        </choose>  
+        limit 0, 10      
+        ;
+	</select>
+
+    <!-- total count -->
+	<select id="selectTotal" parameterType="Map" resultType="int">
+        select count(*) as cnt
+        from car_infors
+        ;
+	</select>
+
     <!-- mybatis foreach HashMap.put("CAR_INFOR_ID_LIST", CAR_INFOR_ID_LIST)-->
 	<select id="selectInUID" parameterType="Map" resultType="Map">    
         SELECT * 
