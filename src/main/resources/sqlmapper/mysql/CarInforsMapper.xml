@@ -34,7 +34,7 @@
             and CAR_NAME like CONCAT(#{words}, '%')
             </when>
         </choose>  
-        limit 0, 10      
+        limit #{pageBegin}, #{pageScale} 
         ;
 	</select>
 

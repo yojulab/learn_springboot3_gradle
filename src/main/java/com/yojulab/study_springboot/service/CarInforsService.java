@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yojulab.study_springboot.dao.SharedDao;
+import com.yojulab.study_springboot.utils.Paginations;
 
 @Service
 @Transactional
 public class CarInforsService {
     @Autowired
     SharedDao sharedDao;
-    
+
     // foreach HashMap.put("CAR_INFOR_ID_LIST", CAR_INFOR_ID_LIST)
     public Object selectInUID(Map dataMap) {
         String sqlMapId = "CarInfors.selectInUID";
@@ -45,10 +46,24 @@ public class CarInforsService {
 
     // 검색(조건-search : YEAR, CAR_NAME)
     public Map selectSearchWithPagination(Map dataMap) {
-        String sqlMapId = "CarInfors.selectSearchWithPagination";
+        // 페이지 형성 위한 계산
+        int totalCount = (int) this.selectTotal(dataMap);
         
+        int currentPage = 1;
+        if(dataMap.get("currentPage") != null) {
+            currentPage = Integer.parseInt((String)dataMap.get("currentPage"));    // from client in param
+        }
+
+        Paginations paginations = new Paginations(totalCount, currentPage);
         HashMap result = new HashMap<>();
-        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
+        result.put("paginations", paginations); // 페이지에 대한 정보
+
+        // page record 수
+        String sqlMapId = "CarInfors.selectSearchWithPagination";
+        dataMap.put("pageScale", paginations.getPageScale());
+        dataMap.put("pageBegin", paginations.getPageBegin());
+        
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap)); // 표현된 레코드 정보
         return result;
     }
 
