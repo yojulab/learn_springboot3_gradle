@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap 5 Template</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 
@@ -20,11 +20,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-8">
-                <h2>Search</h2>
-                <div class="input-group mb-3">
-                    <input type="text" value="<%= name %>" class="form-control" placeholder="Search..." id="keydownEnter">
-                    <button class="btn btn-primary" type="button" onclick="carTableBody()">Go</button>
-                </div>
+                <h2>Admin</h2>
             </div>
         </div>
     </div>
