@@ -40,14 +40,14 @@
                         <label for="auth" class="sr-only">Auth</label>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="auth" id="SYSTEM_MANAGER" value="SYSTEM_MANAGER">
-                            <label class="form-check-label" for="SYSTEM_MANAGER">SYSTEM MANAGER</label>
+                            <label class="form-check-label" for="ROLE_MANAGER">SYSTEM MANAGER</label>
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="auth" id="ROLE_ADMIN" value="ROLE_ADMIN">
-                            <label class="form-check-label" for="ROLE_ADMIN">ROLE ADMIN</label>
+                            <label class="form-check-label" for="ROLE_ADMIN">ADMIN</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="auth" id="USER" value="USER">
+                            <input class="form-check-input" type="radio" name="auth" id="USER" value="ROLE_USER">
                             <label class="form-check-label" for="USER">USER</label>
                           </div>
                         </p>

@@ -3,6 +3,7 @@ package com.yojulab.study_springboot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,14 @@ public class AuthsService {
 
         String sqlMapId = "Auths.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Map selectWithUSERNAME(Map dataMap) {
+        String sqlMapId = "Auths.selectWithUSERNAME";
+        
+        HashMap result = new HashMap<>();
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
     }
 }
