@@ -14,9 +14,7 @@
 
     <div class="container row">
         <div class="col-md-6 mx-auto">
-        <c:if test="${not empty param.fail}">
-            <div><font color="red"> Login Fail ! </font></div>
-        </c:if>
+        <div><font color="red"> Login Fail ! </font></div>
         <form class="form-signin" method="post" action="/login">
             <h2 class="form-signin-heading">We Made Please sign in</h2>
             <p>
