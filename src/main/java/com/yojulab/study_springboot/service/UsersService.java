@@ -1,7 +1,6 @@
 package com.yojulab.study_springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Map;
 import org.springframework.stereotype.Service;
@@ -23,13 +22,8 @@ public class UsersService {
     @Autowired
     AuthsService authsService;
 
-        @Autowired
-    BCryptPasswordEncoder bcryptPasswordEncoder;
     
     public Object insert(Map dataMap) {
-        String password = (String)dataMap.get("password");
-        dataMap.put("password", bcryptPasswordEncoder.encode(password));
-
         String sqlMapId = "Users.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
         return result;
