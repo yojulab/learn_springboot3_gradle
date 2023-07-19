@@ -2,13 +2,17 @@ package com.yojulab.study_springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yojulab.study_springboot.dao.SharedDao;
 import com.yojulab.study_springboot.utils.Commons;
 
 @Service
+@Transactional
 public class AuthsService {
 
     @Autowired
@@ -17,20 +21,14 @@ public class AuthsService {
     @Autowired
     Commons commonUtils;
 
-    // @Autowired
-    // BCryptPasswordEncoder bcryptPasswordEncoder;
-
     public Object insert(Map dataMap) {
+        List authList = new ArrayList<>();
+        authList.add("ROLE_GUEST");  // default auth
+        authList.add(dataMap.get("auth"));  // choosed auth
+        dataMap.put("authList", authList);
+
         String sqlMapId = "Auths.insert";
         Object result = sharedDao.insert(sqlMapId, dataMap);
-        return result;
-    }
-
-    public Object selectListByUID(Map dataMap){
-        dataMap.put("UNIQUE_ID", commonUtils.getUniqueSequence());
-        dataMap.put("roleList", "ROLE_USER");
-
-        Object result = this.insert(dataMap);
         return result;
     }
 }

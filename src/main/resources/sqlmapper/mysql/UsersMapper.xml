@@ -4,7 +4,7 @@
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
         FROM users
-        where UNIQUE_ID = #{UNIQUE_ID}
+        where UNIQUE_ID = #{USERNAME}
 	</select>
 
     <!-- 입력 -->
@@ -12,7 +12,7 @@
         insert into users
         (UNIQUE_ID, NAME, EMAIL, JOB, PASSWORD)
         values
-        (#{UNIQUE_ID}, #{NAME}, #{EMAIL}, #{JOB}, #{PASSWORD})
+        (#{USERNAME}, #{NAME}, #{EMAIL}, #{JOB}, #{password})
         ;
         </insert>
 

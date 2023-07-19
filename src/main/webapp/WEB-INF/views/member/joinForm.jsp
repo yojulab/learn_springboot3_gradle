@@ -18,7 +18,7 @@
                     <h2 class="form-signin-heading">Join Form</h2>
                     <p>
                         <label for="username" class="sr-only">Username ID</label>
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Username"
+                        <input type="text" id="username" name="USERNAME" class="form-control" placeholder="Username"
                             required="" autofocus="" value="test_01">
                     </p>
                     <p>
@@ -32,10 +32,25 @@
                             value="test_first">
                     </p>
                     <p>
-                        <label for="phone" class="sr-only">phone</label>
-                        <input type="phone" id="phone" name="phone" class="form-control" placeholder="phone" required=""
-                            value="010-1234-5678">
+                        <label for="email" class="sr-only">email</label>
+                        <input type="email" id="email" name="EMAIL" class="form-control" placeholder="email" required=""
+                            value="test_01@yoju.lab">
                     </p>
+                    <p>
+                        <label for="auth" class="sr-only">Auth</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="auth" id="SYSTEM_MANAGER" value="SYSTEM_MANAGER">
+                            <label class="form-check-label" for="SYSTEM_MANAGER">SYSTEM MANAGER</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="auth" id="ROLE_ADMIN" value="ROLE_ADMIN">
+                            <label class="form-check-label" for="ROLE_ADMIN">ROLE ADMIN</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="auth" id="USER" value="USER">
+                            <label class="form-check-label" for="USER">USER</label>
+                          </div>
+                        </p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
                 </div>
             </div>

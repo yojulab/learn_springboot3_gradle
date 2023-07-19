@@ -6,16 +6,19 @@
         FROM auths
                 right JOIN auth_names
         ON auths.UNIQUE_ID_AUTH_NAMES = auth_names.UNIQUE_ID
-        AND auths.UNIQUE_ID_USERS = #{UNIQUE_ID}
+        AND auths.UNIQUE_ID_USERS = #{USERNAME}
         ;
         </select>
 
         <!-- 입력 -->
         <insert id="insert" parameterType="Map">
-        insert into AUTH_NAMES 
-        (UNIQUE_ID,AUTH_NAME)
+        insert into AUTHS 
+        (UNIQUE_ID_USERS,UNIQUE_ID_AUTH_NAMES)
         values
-        (#{UNIQUE_ID},#{AUTH_NAME})
+        <foreach item="auth" collection="authList"
+            separator="," nullable="true">
+        (#{USERNAME},#{auth})
+        </foreach>        
         ;
     </insert>
 

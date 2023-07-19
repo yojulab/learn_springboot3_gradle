@@ -21,7 +21,7 @@
             <h2 class="form-signin-heading">We Made Please sign in</h2>
             <p>
                 <label for="username" class="sr-only">Username</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                <input type="text" id="username" name="USERNAME" class="form-control" placeholder="Username" required=""
                     autofocus="" value="test_01">
             </p>
             <p>

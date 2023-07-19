@@ -13,6 +13,9 @@
                         <button class="nav-link" formaction="/home">Home</button>
                     </li>
                     <li class="nav-item">
+                        <button class="nav-link" formaction="/carInfor/map/selectSearch">Carinfo List</button>
+                    </li>
+                    <li class="nav-item">
                         <button class="nav-link" formaction="/admin">Admin</button>
                     </li>
                     <li class="nav-item">
