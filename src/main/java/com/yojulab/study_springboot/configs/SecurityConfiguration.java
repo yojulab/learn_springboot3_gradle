@@ -17,9 +17,11 @@ public class SecurityConfiguration {
                 // 권한에 대한 부분 : url & roles : user url & roles
                 // url, roles from Dao
                 httpSecurity.authorizeHttpRequests() // 로그인
-                        .requestMatchers("/admin*").authenticated()
-                        .anyRequest().permitAll()
-                ;
+                        .requestMatchers("/manager*").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/admin*").hasRole("ADMIN")
+                        .requestMatchers("/carInfor/map/selectSearch").authenticated()  // 로그인한 대상자
+                        .requestMatchers("/carInfor/map/*").hasRole("USER")
+                                .anyRequest().permitAll();      // 그외 전체 대상
                 httpSecurity.formLogin(login -> login.loginPage("/loginForm")
                                 .failureUrl("/loginForm?fail=true")
                                 .loginProcessingUrl("/login")
@@ -29,11 +31,15 @@ public class SecurityConfiguration {
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID"));
 
+                httpSecurity.exceptionHandling()
+                                .accessDeniedPage("/home");
+
                 return httpSecurity.build();
         }
+
         @Bean
         public BCryptPasswordEncoder encoderPasswordEncoder() {
                 return new BCryptPasswordEncoder();
         }
-    
+
 }

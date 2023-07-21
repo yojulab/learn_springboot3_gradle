@@ -19,12 +19,16 @@
                     <li class="nav-item">
                         <button class="nav-link" formaction="/carInfor/map/selectSearch">Carinfo List</button>
                     </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
                         <button class="nav-link" formaction="/admin">Admin</button>
                     </li>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')">
                     <li class="nav-item">
                         <button class="nav-link" formaction="/manager/read">Manager/read</button>
                     </li>
+                    </sec:authorize>
                 </ul>
             </div>
             <ul class="nav navbar-nav navbar-right">
