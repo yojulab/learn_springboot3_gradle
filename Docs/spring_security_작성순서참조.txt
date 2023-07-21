@@ -1,11 +1,13 @@
 * refer git : https://github.com/yojulab/study_springboots_gradle
 
+0 단계 : 회원가입(암호화 없이)
+
 1 단계 : security 동작 확인
 - https://github.com/yojulab/study_springboots_gradle/blob/main/build.gradle 
 + 30번 라인 --> 화면 접근 시 spring 로그인 화면과 가능
 + system logging 내용 확인됨
 - https://github.com/yojulab/study_springboots_gradle/blob/main/src/main/java/com/yojulab/study_springboot/service/UsersService.java
-+ public Object insert(Map dataMap) : 암호화
++ public Object insert(Map dataMap) : 암호화 --> DB 확인
 
 2 단계 : 로그인 가능 작성 : 관련 *Controller.java, *Servicejava, *Mapper.xml 작성 필요
 - https://github.com/yojulab/study_springboots_gradle/blob/main/src/main/webapp/WEB-INF/views/security/loginForm.jsp
