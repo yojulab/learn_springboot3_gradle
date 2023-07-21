@@ -1,13 +1,19 @@
 package com.yojulab.study_springboot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yojulab.study_springboot.utils.Commons;
+
 @Controller
 public class MainController {
+    @Autowired
+    Commons commons;
     @GetMapping({"/", "/home", "/main"})
     public ModelAndView main(ModelAndView modelAndView){
+        String userId = commons.getUserID();
         modelAndView.addObject("name", "Yojulab!");
         modelAndView.setViewName("/WEB-INF/views/main.jsp");
         return modelAndView;

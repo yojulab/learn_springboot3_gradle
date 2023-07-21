@@ -17,6 +17,10 @@ public class PrincipalUser implements UserDetails{
         this.userInfo = userInfo;
     }
 
+    public String getMemberName() {
+        return (String) userInfo.get("NAME");
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // 권한들

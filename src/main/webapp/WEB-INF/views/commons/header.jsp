@@ -1,4 +1,8 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!-- Menu -->
+<sec:authentication property="principal" var="userDetailsBean" />
+
 <form>
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container">
@@ -24,15 +28,25 @@
                 </ul>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <!-- 로그인 전 -->
+                <sec:authorize access="isAnonymous()">
                 <li>
                     <button class="nav-link" formaction="/joinForm">joinForm</button>
                 </li>
                 <li>
                     <button class="nav-link" formaction="/loginForm">login Form</button>
                 </li>
+                </sec:authorize>
+                <!-- 로그인 후 -->
+                <sec:authorize access="isAuthenticated()">
+                <li class="nav-link">
+                    User ID : ${userDetailsBean.username}, 
+                    Name : ${userDetailsBean.memberName}
+                </li>
                 <li>
                     <button class="nav-link" formaction="/logoutForm">logout Form</button>
                 </li>
+                </sec:authorize>
               </ul>
         </div>
     </nav>
