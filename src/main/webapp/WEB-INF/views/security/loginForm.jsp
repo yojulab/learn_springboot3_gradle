@@ -14,8 +14,14 @@
 
     <div class="container row">
         <div class="col-md-6 mx-auto">
-        <div><font color="red"> Login Fail ! </font></div>
-        <form class="form-signin" method="post" action="/login">
+            <% 
+            String fail = request.getParameter("fail");
+            %>
+            
+            <% if ("true".equals(fail)) { %>            
+            <div><font color="red"> Login Fail ! </font></div>
+            <% } %>
+            <form class="form-signin" method="post" action="/login">
             <h2 class="form-signin-heading">We Made Please sign in</h2>
             <p>
                 <label for="username" class="sr-only">Username</label>
