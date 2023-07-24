@@ -2,6 +2,7 @@ package com.yojulab.study_springboot.restapis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yojulab.study_springboot.service.HelloWorldService;
 
@@ -18,7 +20,8 @@ public class HelloWorldController {
     HelloWorldService helloWorldService;
 
     @GetMapping("/helloWorld")
-    public int helloWorld() {
+    public int helloWorld(@RequestParam Map param) {
+        helloWorldService.fakeInsert(param);
         return 0;
     }
 

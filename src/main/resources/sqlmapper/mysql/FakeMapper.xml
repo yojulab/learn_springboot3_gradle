@@ -7,7 +7,20 @@
     // } -->
 	<select id="selectByUID" parameterType="Map" resultType="Map">
         SELECT * 
-        FROM db_cars.factorys
+        FROM factorys
         where COMPANY_ID = #{companyId}
 	</select>
+
+    <!-- 입력 -->
+	<insert id="insert" parameterType="Map">
+        insert into factorys
+        (COMPANY_ID, COMPANY)
+        values
+        <foreach collection="surveyMapList" item="item" 
+            index="index" separator=",">
+            (#{item.QuestionId}, #{item.AnswerId})
+        </foreach>
+        ;
+    </insert>
+
 </mapper>
