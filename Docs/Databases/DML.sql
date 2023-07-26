@@ -1,3 +1,5 @@
+use db_yojulab;
+
 delete
 from COMMONS_CODE;
 
@@ -357,3 +359,5 @@ VALUES ('그랜저', '2021', 'CI062', 'C001');
 -- Insert Statement 63
 INSERT INTO CAR_INFORS (CAR_NAME, YEAR, CAR_INFOR_ID, COMPANY_ID)
 VALUES ('투싼', '2019', 'CI063', 'C002');
+
+select 'Done'    ;
