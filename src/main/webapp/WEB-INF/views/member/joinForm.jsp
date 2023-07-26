@@ -39,7 +39,7 @@
                     <p>
                         <label for="auth" class="sr-only">Auth</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="auth" id="SYSTEM_MANAGER" value="SYSTEM_MANAGER">
+                            <input class="form-check-input" type="radio" name="auth" id="ROLE_MANAGER" value="ROLE_MANAGER">
                             <label class="form-check-label" for="ROLE_MANAGER">SYSTEM MANAGER</label>
                           </div>
                           <div class="form-check form-check-inline">
@@ -47,7 +47,7 @@
                             <label class="form-check-label" for="ROLE_ADMIN">ADMIN</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="auth" id="USER" value="ROLE_USER">
+                            <input class="form-check-input" type="radio" name="auth" id="USER" value="ROLE_USER" checked>
                             <label class="form-check-label" for="USER">USER</label>
                           </div>
                         </p>
