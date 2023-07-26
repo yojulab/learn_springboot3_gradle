@@ -26,8 +26,8 @@ public class CarInforsWithMapController {
 
     // /selectSearch?search=YEAR&words=2020
     // /selectSearch/CAR_NAME/소
-    @GetMapping("/selectSearch")
-    public ModelAndView selectSearch(@RequestParam Map params
+    @GetMapping({"/selectSearch", "/selectSearch/{currentPageNumber}"})
+    public ModelAndView selectSearch(@PathVariable(value=false) String currentPageNumber, @RequestParam Map params
                             , ModelAndView modelAndView) {
         // Object result = carInforsService.selectSearch(params);
         Object result = carInforsService.selectSearchWithPagination(params);
@@ -40,7 +40,7 @@ public class CarInforsWithMapController {
 
     // delete with MVC
     @PostMapping("/deleteAndSelectSearch/{UNIQUE_ID}")
-    public ModelAndView deleteAndSelectSearch(@PathVariable String UNIQUE_ID
+    public ModelAndView deleteAndSelectSearch(@PathVariable(value=false) String UNIQUE_ID
                         , @RequestParam Map params, ModelAndView modelAndView) {
         Object result = carInforsService.deleteAndSelectSearch(UNIQUE_ID, params);
         modelAndView.addObject("params", params);
